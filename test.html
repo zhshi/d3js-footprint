@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>test</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <style type="text/css">
+    #cities {
+    fill: #fff;
+    stroke: #aaa;
+    stroke-width: 0.5px;
+    }
+    .active {
+    fill: blue;
+    }
+    #country {
+    fill-opacity: 0;
+    stroke: #777;
+    stroke-width: 1px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="vis"></div>
+    <script type="text/javascript">
+      var w = 1600;
+      var h = 1000;
+      var proj = d3.geo.mercator().center([100, 45]).scale(1000);
+      var path = d3.geo.path().projection(proj);
+      var t = proj.translate(); // the projection's default translation
+      var s = proj.scale() // the projection's default scale
+
+      var map = d3.select("#vis").append("svg:svg")
+      .attr("width", w)
+      .attr("height", h);
+
+      var cities = map.append("svg:g").attr("id", "cities");
+
+      d3.json("china_cities.json", function (json) {
+      cities.selectAll("path")
+      .data(json.features)
+      .enter().append("svg:path")
+      .attr("d", path)
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
+      });
+
+      <!-- var china = map.append("svg:g").attr("id", "country"); -->
+
+      <!-- d3.json("china.json", function (json) { -->
+      <!-- china.selectAll("path") -->
+      <!-- .data(json.features) -->
+      <!-- .enter().append("svg:path") -->
+      <!-- .attr("d", path); -->
+      <!-- <\!-- .on("mouseover", mouseover) -\-> -->
+      <!-- <\!-- .on("mouseout", mouseout); -\-> -->
+      <!-- }); -->
+
+      function mouseover(d,i) {
+      d3.select(this).classed("active", true);
+      }
+      function mouseout(d,i) {
+      d3.select(this).classed("active", false);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+#tooltip {
+    border: 1px solid #777;
+}
+
+#tooltip label {
+    font-style: italic;
+    font-size: 70%;
+    display: block;
+    float: left;
+    font-weight: bold;
+}
+
+.counties {
+  fill: none;
+  stroke: #aaa;
+  stroke-width: 0.2px;
+  stroke-linejoin: round;
+}
+
+.states {
+  fill: none;
+  stroke: #777;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+}
+
+.active {
+    fill: orange;
+}
+
+.q0 { fill: #ffffff; }
+.q1 { fill: #fee5d9; }
+.q2 { fill: #fcae91; }
+.q3 { fill: #fb6a4a; }
+.q4 { fill: #cb181d; }
